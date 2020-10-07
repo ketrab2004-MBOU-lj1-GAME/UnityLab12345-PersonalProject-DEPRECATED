@@ -4,6 +4,6 @@ Van: Bartek Oskam
 330835, YI4SD1D1
 
 ### Unity Lab 1-5:
-|![Unity Lab 1 Image](https://connect-prd-cdn.unity.com/20190522/learn/images/60494529-4835-4a56-8c7c-ed4cddc48550_Screen_Shot_2019_05_22_at_2.25.40_PM.png)|
-| :--- |
-| [Unity Lab 1](https://learn.unity.com/tutorial/lab-1-personal-project-plan/?courseId=5cf96c41edbc2a2ca6e8810f&projectId=5caccdfbedbc2a3cef0efe63&tab=materials&uv=2018.4#) |
+|![Unity Lab 1 Image](https://connect-prd-cdn.unity.com/20190522/learn/images/60494529-4835-4a56-8c7c-ed4cddc48550_Screen_Shot_2019_05_22_at_2.25.40_PM.png)|![Unity Lab 2 Image](https://connect-prd-cdn.unity.com/20190606/learn/images/3911de90-959f-42aa-b999-8604db788c65_lab_2.png)|
+| :--- | :--- |
+| [Unity Lab 1](https://learn.unity.com/tutorial/lab-1-personal-project-plan/?courseId=5cf96c41edbc2a2ca6e8810f&projectId=5caccdfbedbc2a3cef0efe63&tab=materials&uv=2018.4#) | [Unity Lab 2](https://learn.unity.com/tutorial/lab-2-new-project-with-primitives?courseId=5cf96c41edbc2a2ca6e8810f&projectId=5cdcc312edbc2a24a41671e6#) |
