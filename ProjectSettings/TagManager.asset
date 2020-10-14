@@ -6,6 +6,9 @@ TagManager:
   tags:
   - MainLight
   - Bullet
+  - Asteroid
+  - Alien
+  - AlienBullet
   layers:
   - Default
   - TransparentFX

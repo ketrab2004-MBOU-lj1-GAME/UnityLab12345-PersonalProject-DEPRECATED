@@ -8,6 +8,7 @@
           <e p="BulletController.cs" t="Include" />
           <e p="LoopOnEdges.cs" t="Include" />
           <e p="PlayerController.cs" t="Include" />
+          <e p="SpawnController.cs" t="Include" />
         </e>
       </e>
       <e p="obj" t="ExcludeRecursive" />

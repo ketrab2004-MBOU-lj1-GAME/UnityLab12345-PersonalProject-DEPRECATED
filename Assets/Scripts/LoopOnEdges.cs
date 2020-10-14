@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class LoopOnEdges : MonoBehaviour
 {
-    private float gameWidth = 5f*1.78f;
-    private float gameHeight = 5f;
+    private float gameWidth = 5f*1.78f + .5f;
+    private float gameHeight = 5f + .5f;
     
     void Update()
     {
