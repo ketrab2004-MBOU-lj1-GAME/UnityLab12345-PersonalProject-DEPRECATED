@@ -18,10 +18,10 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - Obstacle
+  - BulletLayer
+  - AlienBulletLayer
+  - Alien
   - 
   - 
   - 

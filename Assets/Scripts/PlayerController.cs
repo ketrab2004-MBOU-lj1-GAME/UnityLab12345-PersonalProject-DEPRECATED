@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     public float rocketSpeed = 50f;
     public float turnSpeed = 180f;
+    public float collisionBounceForce = 1f;
     
     public float shootCooldown = .1f;
     private float lastShot = -1f;
@@ -27,6 +28,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButton("Shoot"))
         {
             shoot();
+            //TODO shoot particle
         }
 
         if (gameObject.activeSelf) //not dead
@@ -36,6 +38,10 @@ public class PlayerController : MonoBehaviour
         if (health <= 0)
         {
             gameObject.SetActive(false);
+            
+            print("Game Over:" + score);
+            
+            //TODO death and particle
         }
     }
 
@@ -47,6 +53,49 @@ public class PlayerController : MonoBehaviour
         rigidBody.AddForce(transform.up * rocketSpeed *
                            Mathf.Clamp(Input.GetAxis("Vertical"),0,1) *
                            Time.deltaTime, ForceMode.Acceleration);
+        
+        //TODO propulsion when vertical input
+    }
+    
+    private void OnCollisionEnter(Collision other)
+    {
+        switch (other.gameObject.tag) //switch case for tags
+        {
+            case "Asteroid":
+                health -= 20f;
+
+                Destroy(other.gameObject);
+                    //destroy obstacle
+                
+                rigidBody.velocity = Vector3.zero;
+                rigidBody.AddForce((transform.position - other.gameObject.transform.position).normalized
+                                   * collisionBounceForce, ForceMode.VelocityChange);
+                //remove previous velocity, and pushed back with collisionBounceForce
+                
+                break;
+            
+            case "AlienBullet":
+                health -= 10f;
+                
+                Destroy(other.gameObject);
+                //destroy bullet
+                
+                break;
+            
+            case "Alien":
+                health -= 25f;
+                
+                rigidBody.velocity = Vector3.zero;
+                rigidBody.AddForce((transform.position - other.gameObject.transform.position).normalized
+                                   * collisionBounceForce, ForceMode.VelocityChange);
+                //remove previous velocity, and pushed back with collisionBounceForce
+                
+                break;
+            
+            default:
+                break;
+        }
+        //remove health based on what whas hit
     }
     
     void shoot()

@@ -5,8 +5,10 @@
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
         <e p="Scripts" t="Include">
+          <e p="AlienController.cs" t="Include" />
           <e p="BulletController.cs" t="Include" />
           <e p="LoopOnEdges.cs" t="Include" />
+          <e p="ObstacleController.cs" t="Include" />
           <e p="PlayerController.cs" t="Include" />
           <e p="SpawnController.cs" t="Include" />
         </e>

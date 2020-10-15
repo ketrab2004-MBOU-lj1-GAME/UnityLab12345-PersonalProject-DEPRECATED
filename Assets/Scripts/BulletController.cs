@@ -20,7 +20,8 @@ public class BulletController : MonoBehaviour
 
         if (Time.fixedTime - startAge > maxAge)
         {
-            //TODO Destroy bullet
+            //TODO Destroy bullet (better)
+            Destroy(gameObject);
         }
     }
 }
