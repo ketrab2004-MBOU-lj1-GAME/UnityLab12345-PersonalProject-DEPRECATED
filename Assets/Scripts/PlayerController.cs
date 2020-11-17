@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float rocketSpeed = 50f;
-    public float turnSpeed = 180f;
-    public float collisionBounceForce = 1f;
+    readonly float rocketSpeed = 50f;
+    readonly float turnSpeed = 180f;
+    readonly float collisionBounceForce = 1f;
+    readonly float shootKnockback = .05f;
+    readonly float ownBulletKnockMult = .1f;
     
-    public float shootCooldown = .1f;
+    readonly float shootCooldown = .25f;
     private float lastShot = -1f;
-    public float bulletOffset = 1f;
+    readonly float bulletOffset = -.35f;
 
     public float health = 100f;
     public float maxHealth = 100f;
@@ -24,22 +26,23 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         movePlayer();
+        //all movement in function
 
         if (Input.GetButton("Shoot"))
         {
-            shoot();
+            shoot(); //shoot when "Shoot" button pressed
             //TODO shoot particle
         }
 
         if (gameObject.activeSelf) //not dead
         {
-            score += Time.deltaTime;
+            score += Time.deltaTime; //increase score slowly when alive
         }
         if (health <= 0)
         {
-            gameObject.SetActive(false);
+            gameObject.SetActive(false); //deactivate when dead
             
-            print("Game Over:" + score);
+            print("Game Over: " + score); //print score
             
             //TODO death and particle
         }
@@ -54,7 +57,7 @@ public class PlayerController : MonoBehaviour
                            Mathf.Clamp(Input.GetAxis("Vertical"),0,1) *
                            Time.deltaTime, ForceMode.Acceleration);
         
-        //TODO propulsion when vertical input
+        //TODO rocket particles
     }
     
     private void OnCollisionEnter(Collision other)
@@ -91,7 +94,7 @@ public class PlayerController : MonoBehaviour
                 //remove previous velocity, and pushed back with collisionBounceForce
                 
                 break;
-            
+
             default:
                 break;
         }
@@ -100,13 +103,20 @@ public class PlayerController : MonoBehaviour
     
     void shoot()
     {
-        if (Time.fixedTime - lastShot >= shootCooldown)
+        if (Time.fixedTime - lastShot >= shootCooldown) //if enough time passed since lastShot do
         {
             GameObject bullet = Instantiate(bulletPrefab, transform.position, transform.rotation, bulletHolder.transform);
             bullet.transform.Translate(transform.forward * bulletOffset);
+            //make bullet and set in right pos
+
+            bullet.GetComponent<BulletController>().inheritedVel = rigidBody.velocity;
+            //set bullet inherited velocity to source's (player) velocity
+            
+            rigidBody.AddForce(-transform.up * shootKnockback, ForceMode.Impulse);
+            //add knockback to player when shooting
 
             lastShot = Time.fixedTime;
-            print(lastShot);
+            //print(lastShot);
         }
     }
 }

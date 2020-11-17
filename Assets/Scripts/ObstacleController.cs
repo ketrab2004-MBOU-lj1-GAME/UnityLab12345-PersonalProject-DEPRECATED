@@ -11,16 +11,17 @@ public class ObstacleController : MonoBehaviour
         if (tag == "AlienBullet") //when shot by alien
         {
             Destroy(gameObject);
-            //gone
+            //gone (but not alien bullet)
             
             //TODO Destroy Particles
-        }else if (tag == "Bullet") //when shot player
+        }else if (tag == "Bullet") //when shot by player
         {
             GameObject.FindWithTag("Player").GetComponent<PlayerController>().score += 10;
-            //10 score when you shoot not alien
+            //10 score when you shoot asteroid
             
             Destroy(gameObject);
-            //gone
+            Destroy(other.gameObject);
+            //gone and player bullet
             
             //TODO Destroy Particles
         }

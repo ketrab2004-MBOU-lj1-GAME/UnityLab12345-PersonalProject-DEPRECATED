@@ -29,7 +29,6 @@ public class AlienController : MonoBehaviour
         player = GameObject.FindWithTag("Player").GetComponent<Transform>();
         playerCont = player.GetComponent<PlayerController>();
         bulletHolder = GameObject.Find("BulletsController").GetComponent<Transform>();
-        rigidBody = GetComponent<Rigidbody>();
     }
 
     
@@ -62,6 +61,9 @@ public class AlienController : MonoBehaviour
             
             bullet.transform.Translate(Vector3.up * bulletOffset);
             //spawn in front of alien instead of inside
+
+            bullet.GetComponent<BulletController>().inheritedVel = rigidBody.velocity;
+            //add ships velocity to bullet
         }
         
         if (health <= 0) //if dead
@@ -98,6 +100,7 @@ public class AlienController : MonoBehaviour
                 Destroy(other.gameObject);
                 //destroy bullet
                 
+                //TODO got damage particle
                 break;
             
             case "Player":
@@ -108,6 +111,7 @@ public class AlienController : MonoBehaviour
                                    * collisionBounceForce, ForceMode.VelocityChange);
                 //remove previous velocity, and pushed back with collisionBounceForce
                 
+                //TODO bounce particle
                 break;
             
             default:

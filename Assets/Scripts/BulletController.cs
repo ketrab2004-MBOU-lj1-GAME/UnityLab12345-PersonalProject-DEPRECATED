@@ -7,6 +7,7 @@ public class BulletController : MonoBehaviour
 {
     public float speed = 35f;
     public float maxAge = 5f;
+    public Vector3 inheritedVel = Vector3.zero;
     private float startAge;
 
     private void Start()
@@ -16,11 +17,11 @@ public class BulletController : MonoBehaviour
 
     void Update()
     {
-        transform.Translate(Vector3.up * speed * Time.deltaTime);
+        transform.Translate((transform.up * speed + (inheritedVel)) * Time.deltaTime, Space.World);
+        //move forward and add inheritedVel, only mult with deltatime after so faster*?, in space.world because inheritedVel is
 
         if (Time.fixedTime - startAge > maxAge)
         {
-            //TODO Destroy bullet (better)
             Destroy(gameObject);
         }
     }
